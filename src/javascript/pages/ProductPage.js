@@ -1,4 +1,22 @@
 class ProductPage {
+    constructor() {
+        this.product = {};
+    }
+
+    // 전체 상품 가져오기
+    async getProductData() {
+        const response = await fetch("https://test.api.weniv.co.kr/mall");
+        const data = await response.json();
+
+        this.product = await data;
+    }
+
+    // 상품 리스트 세팅하기
+    async setProductList() {
+        await this.getProductData();
+        console.log(this.product);
+    }
+
     render() {
         const container = document.createElement("div");
         const element = document.createElement("h1");
@@ -24,6 +42,7 @@ class ProductPage {
 
         container.appendChild(element);
 
+        this.setProductList();
         return container;
     }
 }
