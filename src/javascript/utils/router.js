@@ -9,6 +9,17 @@ class Router {
             console.error("Can not initialize routes, need routes!");
         }
         this.routes = routes;
+
+        for (const key in routes) {
+            const route = routes[key];
+            if (key.indexOf(":") > -1) {
+                const [_, routeName, param] = key.split("/");
+                this.routes["/" + routeName] = route; // ProductDetail로 연결
+                delete this.routes[key];
+            }
+        }
+
+        console.log(this.routes);
     }
     init(rootElementId) {
         if (!rootElementId) {
@@ -45,6 +56,9 @@ class Router {
         if (this.routes[pathname]) {
             const component = new this.routes[pathname]();
             page = component.render(); //컴포넌트(Product, Detail) 렌더링
+        } else if (param) {
+            const component = new this.routes["/" + routeName](param);
+            page = component.render();
         }
 
         if (page) {
