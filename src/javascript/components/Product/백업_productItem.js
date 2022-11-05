@@ -1,13 +1,10 @@
+import { PorudctImage, ProductPrice, ProductName } from "./index.js";
 class ProductItem {
     constructor(item) {
         this.item = item;
     }
     render() {
         const productItem = document.createElement("li");
-
-        const productCard = document.createElement("a");
-        productCard.setAttribute("href", `/detail/${this.item.id}`);
-        productCard.setAttribute("class", "product-item");
 
         const productImageContainer = document.createElement("div");
         productImageContainer.setAttribute("class", "product-img");
