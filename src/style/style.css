@@ -164,3 +164,15 @@ button {
     height: 22px;
     background: url(../assets/icon-delete.svg) no-repeat center / contain;
 }
+
+/* 좋아요 버튼 */
+.like-btn {
+    width: 100px;
+    height: 100px;
+    background: url(../assets/icon-heart.svg) no-repeat center / contain;
+    right: 0;
+}
+.on {
+    background: url(../assets/icon-heart-on.svg) no-repeat center / contain;
+    right: 0;
+}
