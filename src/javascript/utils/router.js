@@ -35,9 +35,14 @@ class Router {
         this.routing(window.location.pathname);
 
         window.addEventListener("click", (e) => {
-            if (e.target.tagName.toLowerCase() === "a") {
+            // 정확하게 a를 눌러야 이동 -> 가장 근접한 조상 중 a를 찾도록 설계
+            // if (e.target.tagName.toLowerCase() === "a") {
+            //     e.preventDefault();
+            //     this.routePush(e.target.href); //url 변경
+            // }
+            if (e.target.closest("a")) {
                 e.preventDefault();
-                this.routePush(e.target.href); //url 변경
+                this.routePush(e.target.closest("a").href);
             }
         });
 

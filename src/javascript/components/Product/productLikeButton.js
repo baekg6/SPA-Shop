@@ -15,8 +15,8 @@ class ProductLikeButton {
 
     addClickEvent(likeButton) {
         likeButton.addEventListener("click", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+            e.preventDefault(); //HTML 기본동작 방지(새로고침 등)
+            e.stopPropagation(); //버블링 중단
             const likeList = JSON.parse(localStorage.getItem("likeList"));
             if (this.like) {
                 localStorage.setItem("likeList", JSON.stringify(likeList.filter((id) => id !== this.productId)));
