@@ -1,3 +1,5 @@
+import { ProductItem } from "../components/Product/index.js";
+
 class ProductPage {
     constructor() {
         this.mainElement = document.createElement("main");
@@ -27,20 +29,8 @@ class ProductPage {
         `;
         const productList = this.mainElement.querySelector(".product-list");
         this.product.forEach((item) => {
-            const productDetailLink = document.createElement("a");
-            productDetailLink.href = `/detail/${item.id}`;
-            productDetailLink.innerHTML = `
-                <li class="product-item">
-                    <div class="product-img">
-                        <img src="http://test.api.weniv.co.kr/${item.thumbnailImg}" alt="" >
-                    </div>
-                    <strong class="product-name">${item.productName}</strong>
-                    <div class="product-price">
-                        <strong class="price m-price">${item.price}</strong>
-                    </div>
-                </li>
-            `; // 재사용성을 위해서 분리해야 한다.
-            productList.append(productDetailLink);
+            const productItem = new ProductItem(item);
+            productList.append(productItem.render());
         });
         console.log(this.mainElement);
     }
