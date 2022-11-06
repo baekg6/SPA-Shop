@@ -1,11 +1,11 @@
 class ProductLikeButton {
     constructor(id) {
         this.productId = id;
-        this.like = this.clickedLikeList();
-        console.log(this.like);
+        this.like = this.checkLikeList();
+        console.log(this.like, this.productId);
     }
 
-    clickedLikeList() {
+    checkLikeList() {
         if (!localStorage.getItem("likeList")) {
             localStorage.setItem("likeList", JSON.stringify([]));
         }
@@ -13,20 +13,22 @@ class ProductLikeButton {
         return likeList.includes(this.productId);
     }
 
+    // 클릭하면 좋아요 목록에 추가
+    // 추가되어 있다면 "on"클래스를 버튼에 추가
+    // 로컬 스토리지를 이용하여 클라이언트에서 저장
     addClickEvent(likeButton) {
         likeButton.addEventListener("click", (e) => {
             e.preventDefault(); //HTML 기본동작 방지(새로고침 등)
             e.stopPropagation(); //버블링 중단
+
             const likeList = JSON.parse(localStorage.getItem("likeList"));
-            if (this.like) {
-                localStorage.setItem("likeList", JSON.stringify(likeList.filter((id) => id !== this.productId)));
-                likeButton.classList.remove("on");
-                this.like = false;
-            } else {
-                localStorage.setItem("likeList", JSON.stringify([...likeList, this.productId]));
-                likeButton.classList.add("class", "on");
-                this.like = true;
-            }
+            this.like = !this.like;
+            // 범
+            this.like && likeList.push(this.productId);
+            const newLikeList = this.like ? likeList : likeList.filter((id) => id != this.productId);
+            localStorage.setItem("likeList", JSON.stringify(newLikeList));
+
+            this.like ? e.target.classList.add("on") : e.target.classList.remove("on");
         });
     }
 

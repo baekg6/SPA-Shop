@@ -167,12 +167,17 @@ button {
 
 /* 좋아요 버튼 */
 .like-btn {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
     background: url(../assets/icon-heart.svg) no-repeat center / contain;
     right: 0;
 }
 .on {
     background: url(../assets/icon-heart-on.svg) no-repeat center / contain;
     right: 0;
+}
+
+.product-img {
+    width: 200px;
+    height: 200px;
 }
