@@ -2,7 +2,6 @@ class ProductLikeButton {
     constructor(id) {
         this.productId = id;
         this.like = this.checkLikeList();
-        console.log(this.like, this.productId);
     }
 
     checkLikeList() {

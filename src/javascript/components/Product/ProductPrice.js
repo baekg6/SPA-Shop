@@ -1,6 +1,7 @@
 class ProductPrice {
-    constructor(price) {
+    constructor(price, discountRate) {
         this.price = price;
+        this.discountRate = discountRate;
     }
 
     render() {
@@ -9,13 +10,39 @@ class ProductPrice {
 
         const productPrice = document.createElement("strong");
         productPrice.setAttribute("class", "price m-price");
-        productPrice.innerText = this.price;
 
         const priceType = document.createElement("span");
         priceType.innerText = "원";
-
-        productPrice.appendChild(priceType);
         productPriceContainer.appendChild(productPrice);
+
+        if (this.discountRate > 0) {
+            /*
+             * 1. 할인된 금액 계산
+             * 2. this.price에 할인율 계산된 금액을 입력
+             * 3. 할인 관련 요소를 추가
+             */
+
+            const discountRateContainer = document.createElement("div");
+            discountRateContainer.setAttribute("class", "price-discount");
+
+            const originPrice = document.createElement("strong");
+            originPrice.setAttribute("class", "price-strikethrough");
+            originPrice.innerText = this.price;
+
+            const discountRateDisplay = document.createElement("strong");
+            discountRateDisplay.setAttribute("class", "discount-rate");
+            discountRateDisplay.innerText = this.discountRate + "%";
+
+            this.price = this.price - this.price * 0.01 * this.discountRate;
+
+            discountRateContainer.appendChild(originPrice);
+            originPrice.appendChild(priceType.cloneNode(true));
+            discountRateContainer.appendChild(discountRateDisplay);
+            productPriceContainer.appendChild(discountRateContainer);
+        }
+
+        // productPrice.innerText = this.price;
+        productPrice.appendChild(priceType);
 
         return productPriceContainer;
     }

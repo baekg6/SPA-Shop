@@ -19,7 +19,7 @@ class Router {
             }
         }
 
-        console.log(this.routes);
+        // console.log(this.routes);
     }
     init(rootElementId) {
         if (!rootElementId) {
