@@ -1,5 +1,5 @@
 @charset "utf-8";
-@import "reset.css";
+@import 'reset.css';
 
 :root {
     --main-color: #6327fe;
@@ -50,7 +50,7 @@ html {
 
 body,
 button {
-    font-family: "Spoqa Han Sans Neo", "sans-serif";
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
 }
 
 body {
@@ -172,7 +172,7 @@ button {
     background: url(../assets/icon-heart.svg) no-repeat center / contain;
     right: 0;
 }
-.on {
+.like-btn.on {
     background: url(../assets/icon-heart-on.svg) no-repeat center / contain;
     right: 0;
 }

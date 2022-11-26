@@ -1,11 +1,11 @@
-import Component from "../../core/Component.js";
-import { ProductImage, ProductName, ProductPrice, ProductLikeButton } from "../Product/index.js";
+import Component from '../../core/Component.js';
+import { ProductImage, ProductName, ProductPrice, ProductLikeButton } from '../Product/index.js';
 
 class ProductCard extends Component {
     render() {
-        const product = document.createElement("a");
-        product.setAttribute("href", `/detail/${this.props.item.id}`);
-        product.setAttribute("class", "product-item");
+        const product = document.createElement('a');
+        product.setAttribute('href', `/detail/${this.props.item.id}`);
+        product.setAttribute('class', 'product-item');
 
         const productImage = new ProductImage({ src: this.props.item.thumbnailImg });
         const productName = new ProductName({ name: this.props.item.productName }); //객체 형태로 전달
@@ -18,7 +18,7 @@ class ProductCard extends Component {
         product.appendChild(productImage.render());
         product.appendChild(productName.render());
         product.appendChild(productPrice.render());
-        product.appendChild(productLikeButton.render());
+        product.appendChild(productLikeButton.initialize());
 
         return product;
     }
